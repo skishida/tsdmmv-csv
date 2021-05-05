@@ -36,7 +36,7 @@ convert log csv file to user-friendly csv and json file
 
 ### Usage
 
-* [Open this page in github pages]() and just drag&drop `.csv` file into browser
+* [Open this page in github pages](https://skishida.github.io/tsdmmv-csv/index.html) and just drag&drop `.csv` file into browser
   * or clone this repository and open `index.html` locally
 
 ### Reference
