@@ -1,10 +1,3 @@
-const inputElement = document.getElementById("input");
-inputElement.addEventListener("change", inputChangedHandler, false);
-function inputChangedHandler() {
-    processFiles(this.files);
-    document.getElementById('input').value = ''
-}
-
 if (window.File) {
     var dropArea = document.getElementById('dropArea');
 
@@ -19,6 +12,13 @@ if (window.File) {
         var files = e.dataTransfer.files;
         processFiles(files);
     }, false);
+
+    const inputElement = document.getElementById("input");
+    inputElement.addEventListener("change", inputChangedHandler, false);
+    function inputChangedHandler() {
+        processFiles(this.files);
+        document.getElementById('input').value = ''
+    }
 }
 
 function processFiles(files) {
@@ -84,23 +84,24 @@ function process(data, filename) {
     donwloadJson(metajson, namebase + "_meta");
 
     // skip second line
-    var csv = "Elapsed time,Mode,Main Value,Unit,Mode,Date Time, Elapsed sec\n";
+    var csv = "Elapsed time,Elapsed sec,Mode,Main Value,Unit,Mode,Date Time\n";
 
     // read following line
     var csvData = [];
     for (var i = 0; i < data.length - 2; i++) {
         var line = data[i + 2].split(",");
-        csvData[i] = line;
+        csvData[i] = [, , , , , ,];
 
-        // remove space
-        for (var j = 0; j < csvData[i].length; j++) {
-            csvData[i][j] = csvData[i][j].trim();
-        }
-        // change date format
-        csvData[i][0] = csvData[i][0].replace("'", ":").replace("\"", ".")
+        // Elapsed time: change date format
+        // Elapsed sec: calc from elapsed time
+        csvData[i][0] = line[0].trim().replace("'", ":").replace("\"", ".")
         const d = "1970-01-01 " + csvData[i][0] + " +0000";
         const date = new Date(d);
-        csvData[i][line.length - 1] = date.getTime() / 1000.0;
+        csvData[i][1] = date.getTime() / 1000.0;
+
+        for (var j = 0; j < line.length - 1; j++) {
+            csvData[i][2 + j] = line[1 + j].trim().replace(",", "");
+        }
 
         csv += csvData[i].join(",") + "\n";
     }

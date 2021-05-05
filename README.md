@@ -39,6 +39,10 @@ convert log csv file to user-friendly csv and json file
 * [Open this page in github pages](https://skishida.github.io/tsdmmv-csv/index.html) and just drag&drop `.csv` file into browser
   * or clone this repository and open `index.html` locally
 
+### Note
+
+* Only tested on voltage & tempreture meter logfile.
+
 ### Reference
 
 * [Ts Digital Multi Meter Viewer](http://www.ts-software-jp.net/products/tsdmmview.html)
