@@ -14,9 +14,9 @@ convert log csv file to user-friendly csv and json file
 
 * output csv file for main data
     ```csv
-    Elapsed time,Mode,Main Value,Unit,Mode,Date Time, Elapsed sec
-    0:00:00.12,DC,356.80,mV,,2021/05/05 15:46:57,0.12
-    0:00:00.64,DC,355.90,mV,,2021/05/05 15:46:57,0.64
+    Elapsed time,Elapsed sec,Mode,Main Value,Unit,Mode,Date Time
+    0:00:00.12,0.12,DC,356.80,mV,,2021/05/05 15:46:57,
+    0:00:00.64,0.64,DC,355.90,mV,,2021/05/05 15:46:57,
     ```
   * remove blank
   * change date format from `hh:mm'ss"uuu` to `hh:mm:ss.uuu`
